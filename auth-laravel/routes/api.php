@@ -29,4 +29,5 @@ Route::group([
 
     Route::get('/me', [AuthController::class, 'profile']);
     
+    Route::post('/logout',[AuthController::class,'logout']);
 });
