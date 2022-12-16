@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
-class lsSuperAdmin
+class IsSuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -18,16 +19,17 @@ class lsSuperAdmin
     {
         $userId = auth()->user()->id;
 
-        $user= User::find($userId);
+        $user = User::find($userId);
 
         $hasSuperAdminRole = $user->roles->contains(3);
 
-        if (!$hasSuperAdminRole) {
+        if(!$hasSuperAdminRole) {
             return response()->json([
-                "succes" => true,
-                "message" => "No puedes pasaaaaar"
+                "success" => true,
+                "message" => "No puedes pasaaaaaaar!"
             ]);
-    
+        }
+
         return $next($request);
     }
-} ;
+}
